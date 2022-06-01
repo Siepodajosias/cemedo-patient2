@@ -12,6 +12,7 @@ import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -56,7 +57,7 @@ public class Dossier implements java.io.Serializable {
 	}
 
 	@Id
-	@GeneratedValue(strategy = IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id_dossier", unique = true, nullable = false)
 	public int getIdDossier() {
 		return idDossier;
@@ -67,7 +68,7 @@ public class Dossier implements java.io.Serializable {
 	}
 	
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "Patients_id_Patients", nullable = false, insertable = false, updatable = false)
 	public Patient getPatient() {
 		return this.patient;
@@ -104,7 +105,7 @@ public class Dossier implements java.io.Serializable {
 		this.descriptionDossier = descriptionDossier;
 	}
 
-	@ManyToMany(fetch = FetchType.LAZY)
+	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "dossiers_has_medecins", catalog = "heroku_88ae11bd39df693", joinColumns = {
 			@JoinColumn(name = "Dossiers_id_dossier", nullable = false, updatable = false) }, inverseJoinColumns = {
 					@JoinColumn(name = "Medecins_id_Medecins", nullable = false, updatable = false) })

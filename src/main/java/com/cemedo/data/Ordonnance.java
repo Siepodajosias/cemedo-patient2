@@ -1,17 +1,14 @@
 package  com.cemedo.data;
 // Generated 1 juin 2022 � 14:01:29 by Hibernate Tools 4.3.5.Final
 
-import static javax.persistence.GenerationType.IDENTITY;
-
 import java.util.HashSet;
 import java.util.Set;
-import javax.persistence.AttributeOverride;
-import javax.persistence.AttributeOverrides;
+
 import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -70,7 +67,7 @@ public class Ordonnance implements java.io.Serializable {
 	}
 
 	@Id
-	@GeneratedValue(strategy = IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id_ordonnance", unique = true, nullable = false)
 	public int getIdOrdonnance() {
 		return idOrdonnance;
@@ -81,7 +78,7 @@ public class Ordonnance implements java.io.Serializable {
 	}
 
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "Medecins_id_Medecins", nullable = false)
 	public Medecin getMedecin() {
 		return this.medecin;
@@ -169,7 +166,7 @@ public class Ordonnance implements java.io.Serializable {
 		this.examens = examens;
 	}
 
-	@ManyToMany(fetch = FetchType.LAZY)
+	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "medicaments_has_ordonnances", catalog = "heroku_88ae11bd39df693", joinColumns = {
 			@JoinColumn(name = "Ordonnances_id_ordonnance", nullable = false, updatable = false) }, inverseJoinColumns = {
 					@JoinColumn(name = "Medicaments_id_medicament", nullable = false, updatable = false)})

@@ -4,11 +4,12 @@ package  com.cemedo.data;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
-import static javax.persistence.GenerationType.IDENTITY;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -115,7 +116,7 @@ public class Patient implements java.io.Serializable {
 	}
 
 	@Id
-	@GeneratedValue(strategy = IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 
 	@Column(name = "id_Patients", unique = true, nullable = false)
 	public Integer getIdPatients() {
@@ -263,7 +264,7 @@ public class Patient implements java.io.Serializable {
 		this.photoPatient = photoPatient;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "patient")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "patient")
 	public Set<Rapport> getRapports() {
 		return this.rapports;
 	}
@@ -272,7 +273,7 @@ public class Patient implements java.io.Serializable {
 		this.rapports = rapports;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "patient")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "patient")
 	public Set<Antecedant> getAntecedants() {
 		return this.antecedants;
 	}
@@ -317,7 +318,7 @@ public class Patient implements java.io.Serializable {
 		this.familles = familles;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "patient")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "patient")
 	public Set<Dossier> getDossiers() {
 		return this.dossiers;
 	}
@@ -335,7 +336,7 @@ public class Patient implements java.io.Serializable {
 		this.consultations = consultations;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "patient")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "patient")
 	public Set<Facturepatient> getFacturepatients() {
 		return this.facturepatients;
 	}
@@ -362,7 +363,7 @@ public class Patient implements java.io.Serializable {
 		this.livraisons = livraisons;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "patient")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "patient")
 	public Set<Examen> getExamens() {
 		return this.examens;
 	}
@@ -371,7 +372,7 @@ public class Patient implements java.io.Serializable {
 		this.examens = examens;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "patient")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "patient")
 	public Set<Ordonnance> getOrdonnances() {
 		return this.ordonnances;
 	}
